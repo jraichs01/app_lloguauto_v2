@@ -1,0 +1,9 @@
+# Ignorar fitxers de compilació de Java
+*.class
+bin/
+target/
+
+# Ignorar configuracions d'IDE (IntelliJ, Eclipse, VS Code)
+.idea/
+.settings/
+.vscode/

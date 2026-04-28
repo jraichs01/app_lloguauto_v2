@@ -1,0 +1,49 @@
+classDiagram
+    %% Definició de la Classe (El Plànol)
+    class Automobil {
+        -String marca
+        -String model
+        -String matricula
+        -int comptador$
+        +Automobil(String marca, String model, String matricula)
+        +Automobil()
+        +setMarca(String marca)
+        +setModel(String model)
+        +setMatricula(String matricula)
+        +getMarca() String
+        +getModel() String
+        +getMatricula() string
+
+        +getComptador()$ int
+        %% setComptador --> per inicialitzar-lo
+        +setComptador(int valor)$
+        +validarMatricula(String matricula)$ boolean
+        +mostrarDades() String
+    }
+
+    %% Representació de les Instàncies (Els Objectes)
+    class cotxe1["<u>elMeuCotxe : Automobil</u>"] {
+        marca = "Seat"
+        model = "Ibiza"
+        matricula = "1234ABC"
+        comptador = 3
+    }
+
+    class cotxe2["<u>cotxeEmpresa : Automobil</u>"] {
+        marca = "Ford"
+        model = "Focus"
+        matricula = "5678DEF"
+        comptador = 3
+    }
+
+    class cotxe3["<u>cotxeGeneric : Automobil</u>"] {
+        marca = ""
+        model = ""
+        matricula = ""
+        comptador = 3
+    }
+
+    %% Relacions d'instanciació
+    Automobil ..> cotxe1 : instantiates
+    Automobil ..> cotxe2 : instantiates
+    Automobil ..> cotxe3 : instantiates

@@ -1,0 +1,72 @@
+classDiagram
+    class Automobil {
+        <<abstract>>
+        -String marca
+        -String model
+        -String matricula
+        #TipusCombustible combustible
+        -int comptador$
+        +Automobil(mar, mod, mat, combu)
+        +Automobil()
+        +getMarca() String
+        +setMarca(marca)
+        +getMatricula() String
+        +setMatricula(matricula)
+        +mostrarDades() String
+        +getComptador() int$
+        +validarMatricula(matricula) boolean$
+    }
+
+    class Cotxe {
+        -int numPortes
+        +Cotxe(marca, model, matricula, combustible, numPortes)
+        +Cotxe()
+        +getNumPortes() int
+        +setNumPortes(numPortes)
+        +mostrarDades() String
+    }
+
+    class Camio {
+        -float tara
+        -float pesMaxim
+        +Camio(marca, model, matricula, combustible, tara, pesMaxim)
+        +Camio()
+        +getTara() float
+        +getPesMaxim() float
+        +mostrarDades() String
+    }
+
+    class TipusCombustible {
+        <<enumeration>>
+        BENZINA_95
+        BENZINA_98
+        DIESEL
+        ELECTRIC
+        HIBRID
+        -double preuPerUnitat
+        +getPreu() double
+    }
+
+    class GestorAutomobils {
+        -Automobil[] llistaAutos
+        +GestorAutomobils(capacitat)
+        +afegirAutomobil(posicio, auto)
+        +llistarAutomobils()
+        +getNumAutos() int
+    }
+
+    class Main {
+        +main(args)$
+        +menu(agencia)$
+        -crearCotxe(sc) Cotxe$
+        -crearCamio(sc) Camio$
+        -seleccionarCombustible(sc) TipusCombustible$
+    }
+
+    Automobil <|-- Cotxe : Herència
+    Automobil <|-- Camio : Herència
+    Automobil o-- TipusCombustible : Associació
+    GestorAutomobils "1" *-- "0..*" Automobil : Composició (Array)
+    Main ..> GestorAutomobils : Utilitza
+    Main ..> Cotxe : Crea
+    Main ..> Camio : Crea

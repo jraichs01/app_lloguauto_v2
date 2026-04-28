@@ -1,0 +1,26 @@
+<diagram program="umletino" version="15.1"><zoom_level>16</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>0</y><w>656</w><h>464</h></coordinates><panel_attributes>Automobil
+--
+- marca: String
+- model: String
+- matricula: String
+_- comptador:int_
+--
++ Atomobil(in marca:String, in model: String, in matricula: String)
++ Automovil()
++ setMarca(in marca: String)
++ setModel(in model: String)
++ setMatricula(in matricula: String)
++ getMarca():String
++ getModel():String
++ getMatricula():String
+_+ getComptador():int_
+_+ setComptador(in valor:int)_
+_+ validarMatricula(in matricula: String): bool_
++ mostrarDades(): String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>80</x><y>592</y><w>336</w><h>112</h></coordinates><panel_attributes>_Auto1: Automobil_
+--
+marca: String="mecedes"
+model: String="GLK"
+matricula: String="1234ABC"
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>272</x><y>448</y><w>352</w><h>176</h></coordinates><panel_attributes>lt=&lt;.
+&lt;&lt;Instacia de la classe Automobil&gt;&gt;</panel_attributes><additional_attributes>20;90;10;10</additional_attributes></element></diagram>
