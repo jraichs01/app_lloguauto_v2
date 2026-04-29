@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+
+actor "Client" as user
+
+
+rectangle "App Lloguer de Cotxes" {
+    usecase "Donar-se d'Alta / Registre" as UC_Reg
+    usecase "Cercar i Seleccionar Vehicle" as UC1
+    usecase "Realitzar Reserva" as UC2
+    usecase "Pagar Lloguer" as UC3
+    usecase "Recollir Vehicle" as UC4
+    usecase "Retornar Vehicle" as UC5
+    usecase "Generar Factura/Tiquet" as UC6
+
+
+    ' Accions de l'usuari
+    user --> UC_Reg
+    user --> UC1
+    user --> UC2
+    user --> UC4
+    user --> UC5
+
+
+    ' Relacions lògiques
+    UC1 ..> UC_Reg : <<include>>
+    UC2 ..> UC_Reg : <<include>>
+    UC2 <.. UC3 : <<extend>>
+   
+    ' El pagament és obligatori en la recollida si no s'ha fet abans
+    UC4 ..> UC3 : <<include>>
+   
+    ' El tiquet es genera automàticament al retornar
+    UC5 ..> UC6 : <<include>>
+}
+
+
+note right of UC2
+  Per realitzar la reserva,
+  el sistema verifica que
+  el client estigui registrat.
+end note
+
+
+@enduml
