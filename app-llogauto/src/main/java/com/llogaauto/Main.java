@@ -31,7 +31,7 @@ public class Main {
                 sc.nextLine();
 
                 switch (opcio) {
-                    case 1:
+                    case 1: // usuari ha triat afegir cotxe
                         Cotxe cotxe = crearCotxe(sc);
                         if (cotxe != null) {
                             if (!agencia.existeixAutomobil(cotxe.getMatricula())) {

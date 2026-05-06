@@ -1,0 +1,42 @@
+sequenceDiagram
+    participant U as Usuari
+    participant M as Main
+    participant G as GestorAutomobils
+    participant L as llistaAutomobils (ArrayList)
+    participant I as Iterator
+
+    U->>M: Selecciona "Eliminar Automòbil" (Opció 3)
+    M->>U: "Matrícula a eliminar:"
+    U-->>M: Introdueix matrícula (ex: "1234BBB")
+    
+    M->>G: existeixAutomobil("1234BBB")
+    activate G
+    G->>L: iterator()
+    G-->>G: Recorre llista cercant coincidència
+    G-->>M: retorna true
+    deactivate G
+
+    M->>G: eliminarAutomobil("1234BBB")
+    activate G
+    G->>L: iterator()
+    activate I
+    I-->>G: retorna iterador
+    
+    loop Mentre hi hagi elements i no eliminat
+        G->>I: next()
+        I-->>G: retorna objecte Automobil
+        G->>G: Comprova si matricula coincideix
+        alt Matrícula coincideix
+            G->>I: remove()
+            Note right of I: Elimina l'element actual de la llista
+            G-->>G: Marca com eliminat
+        end
+    end
+    deactivate I
+    
+    G-->>M: Finalitza execució
+    deactivate G
+
+    M->>G: llistarAutomobils()
+    Note over M,G: Mostra la llista actualitzada a l'usuari
+    M->>U: "Automòbil eliminat."

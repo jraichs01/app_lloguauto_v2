@@ -1,0 +1,38 @@
+sequenceDiagram
+    participant U as Usuari
+    participant M as Main
+    participant A as Automobil (Static)
+    participant C as Cotxe
+    participant G as GestorAutomobils
+
+    U->>M: Selecciona "Afegir Cotxe" (Opció 1)
+    M->>M: crearCotxe(scanner)
+    
+    rect rgb(240, 240, 240)
+    Note over M,A: Bucle de validació de matrícula
+    M->>U: Demana Matrícula
+    U-->>M: Introdueix Matrícula
+    M->>A: validarMatricula(matricula)
+    A-->>M: retorna boolean (true/false)
+    end
+
+    M->>C: new Cotxe(marca, model, matricula, combustible, portes)
+    activate C
+    C->>A: super(marca, model, matricula, combustible)
+    Note right of A: Incrementa comptador static
+    C-->>M: retorna objecte Cotxe
+    deactivate C
+
+    M->>G: existeixAutomobil(matricula)
+    activate G
+    G-->>M: retorna false
+    deactivate G
+
+    M->>G: afegirAutomobil(cotxe)
+    activate G
+    G->>G: llistaAutomobils.add(auto)
+    G-->>M: Confirmació
+    deactivate G
+
+    M->>U: "Cotxe afegit correctament"
+    
